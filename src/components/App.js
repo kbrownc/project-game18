@@ -32,7 +32,7 @@ function App() {
   };
 
   const handleClick = () => {
-    // which squares contain 1s,2s,3s,.....
+    // which squares contain 1's,2's,3's,.....
     let wordN;
     let result = '';
     let words = [];

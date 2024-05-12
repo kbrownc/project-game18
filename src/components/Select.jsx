@@ -164,11 +164,13 @@ const SelectNumber = ({
   return (
     <>
       <div className="instructions">
-        Instructions: Enter a number betwen 1 and 20 which
+        Enter a number betwen 1 & 20 which
         <br />
-        limits the number of consonents you can play. Select
+        limits the number of consonents you 
         <br />
-        the word sizes you want the board to be composed of.
+        can play. Select the word sizes you
+        <br />
+        want the board to be composed of.
         <br />
       </div>
       <br />

@@ -31,7 +31,8 @@ const Square = ({
     if (
       workRemainingAlphabet.indexOf(e.target.value.toUpperCase()) === -1 &&
       e.target.value !== '' &&
-      workErrorMessage === ''
+      workErrorMessage === '' &&
+      ['A', 'E', 'I', 'O', 'U'].indexOf(newLetter) === -1
     ) {
       workRemainingAlphabet.push('');
       workErrorMessage = 'Letter is not available';

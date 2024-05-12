@@ -44,9 +44,6 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
 }
-.hiddensquares {
-  visibility: hidden;
-}
 .yellowsquares {
   background-color: yellow;
   font-weight: bold;
