@@ -4,7 +4,6 @@ const Square = ({
   i,
   squares,
   setSquares,
-  onClick,
   remainingAlphabet,
   setRemainingAlphabet,
   errorMessage,

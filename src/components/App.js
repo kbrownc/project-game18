@@ -18,18 +18,37 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
   const [allValid, setAllValid] = useState(false);
+  let game;
 
-  const restart = () => {
-    setSelectNumber(false);
-    setNumberSelected('');
-    setWordLengths([]);
-    setSquares([]);
-    setWordNo(1);
-    setErrorMessage('');
-    setRemainingAlphabet(alphabet);
-    setScore(0);
-    console.clear();
+  class Game {
+    // constructor() {
+    // }
+    restart() {
+      setSelectNumber(false);
+      setNumberSelected('');
+      setWordLengths([]);
+      setSquares([]);
+      setWordNo(1);
+      setErrorMessage('');
+      setRemainingAlphabet(alphabet);
+      setScore(0);
+      console.clear();
+    }
+    calculateScore(words) {
+      let workScore = 20 - numberSelected;
+      for (let i = 0; i < words.length; i++) {
+        for (let j = 0; j < words[i].length; j++) {
+          workScore =
+            workScore +
+            letterPoints.find(item => {
+              return item.letter === words[i][j].toUpperCase();
+            }).point;
+      }
+    }
+    return workScore;
+    }
   };
+  game = new Game();
 
   const handleClick = () => {
     // which squares contain 1's,2's,3's,.....
@@ -67,21 +86,6 @@ function App() {
     verifyBoard(words);
   };
 
-  // Calculate total value of words plus Bonus
-  function calculateScore(words) {
-    let workScore = 20 - numberSelected;
-    for (let i = 0; i < words.length; i++) {
-      for (let j = 0; j < words[i].length; j++) {
-        workScore =
-          workScore +
-          letterPoints.find(item => {
-            return item.letter === words[i][j].toUpperCase();
-          }).point;
-      }
-    }
-    return workScore;
-  }
-
   function verifyBoard(words) {
     let workErrorMessage = '';
     // Are all squares filled in?
@@ -106,7 +110,7 @@ function App() {
       workErrorMessage = invalidWord + ' is not valid';
     } else {
       workErrorMessage = 'You win!!!';
-      setScore(calculateScore(words));
+      setScore(game.calculateScore(words));
     }
     setErrorMessage(workErrorMessage);
     setAllValid(workAllValid)
@@ -160,7 +164,6 @@ function App() {
           <Board
             squares={squares}
             setSquares={setSquares}
-            onClick={handleClick}
             remainingAlphabet={remainingAlphabet}
             setRemainingAlphabet={setRemainingAlphabet}
             errorMessage={errorMessage}
@@ -182,7 +185,7 @@ function App() {
           <div>Number of Letters remaining: {numberSelected - (32 - remainingAlphabet.length)}</div>
         </div>
         <br />
-        <button className="restart" onClick={() => restart()}>
+        <button className="restart" onClick={() => game.restart()}>
           Restart
         </button>
       </div>

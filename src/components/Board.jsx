@@ -4,7 +4,6 @@ import Square from './Square';
 const Board = ({
   squares,
   setSquares,
-  onClick,
   remainingAlphabet,
   setRemainingAlphabet,
   errorMessage,
@@ -19,7 +18,6 @@ const Board = ({
           i={i}
           squares={squares}
           setSquares={setSquares}
-          onClick={() => onClick(i)}
           remainingAlphabet={remainingAlphabet}
           setRemainingAlphabet={setRemainingAlphabet}
           errorMessage={errorMessage} 
