@@ -17,7 +17,7 @@ const Square = ({
     // Check to see if you have reached the extent of your letter useage
     let workErrorMessage = '';
     if (
-      numberSelected < 32 - remainingAlphabet.length + 1 &&
+      numberSelected < 27 - remainingAlphabet.length + 1 &&
       ['A', 'E', 'I', 'O', 'U'].indexOf(newLetter) === -1
     ) {
       workRemainingAlphabet.push('');
