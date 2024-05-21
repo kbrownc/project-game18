@@ -183,7 +183,7 @@ function App() {
             Word lengths selected:
             {wordLengths.map((lth, i) => lth + ' ')}
           </div>
-          <div>Number of Letters remaining: {numberSelected - (32 - remainingAlphabet.length)}</div>
+          <div>Number of Letters remaining: {numberSelected - (27 - remainingAlphabet.length)}</div>
         </div>
         <br />
         <button className="restart" onClick={() => game.restart()}>
