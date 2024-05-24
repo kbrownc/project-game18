@@ -187,7 +187,6 @@ const SelectNumber = ({
         <span className="instructionsNum">Enter number here</span>
       </div>
       <div>
-        <form>
           {lengthList.map(lth => (
             <div key={lth}>
               <input
@@ -201,7 +200,6 @@ const SelectNumber = ({
               <label className="modal-label">{lth + ' letter word size'}</label>
             </div>
           ))}
-        </form>
       </div>
       <button className="done" onClick={() => saveClicked()}>
           Save choices
