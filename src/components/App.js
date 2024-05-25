@@ -18,7 +18,6 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
   let game;
-  let words = [];
   let invalidWord = '';
 
   class Game {
@@ -53,6 +52,7 @@ function App() {
     // which squares contain 1's,2's,3's,.....
     let wordN;
     let result = '';
+    let words = [];
     for (let i = 1; i < wordNo + 1; i++) {
       wordN = [];
       for (let j = 0; j < squares.length; j++) {
@@ -84,7 +84,7 @@ function App() {
     verifyBoard(words);
   };
 
-  function checkWords() {
+  function checkWords(words) {
     if (
       words.some(item => {
         invalidWord = item;
@@ -110,7 +110,7 @@ function App() {
 
     // are all words real words
     if (workErrorMessage === '') {
-      if (!checkWords()) {
+      if (!checkWords(words)) {
         workErrorMessage = invalidWord + ' is not valid';
       } else {
         workErrorMessage = 'You win!!!';
@@ -147,7 +147,7 @@ function App() {
     <>
       <h1 className="game-title">Dyna-crosswords</h1>
       <span className="score"> Score: {score}</span>
-      <div className={checkWords() ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
+      <div className={true ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
       {!selectNumber ? (
         <div>
           <SelectNumber
