@@ -42,11 +42,11 @@ function App() {
             letterPoints.find(item => {
               return item.letter === words[i][j].toUpperCase();
             }).point;
+        }
       }
+      return workScore;
     }
-    return workScore;
-    }
-  };
+  }
   game = new Game();
 
   const handleClick = () => {
@@ -85,34 +85,37 @@ function App() {
   };
 
   function checkWords() {
-    let allValid = true;
-    //let invalidWord = '';
-    for (let j = 0; j < words.length; j++) {
-      if (validWord(words[j]) === false) {
-        allValid = false;
-        invalidWord = words[j];
-        break;
-      }
+    if (
+      words.some(item => {
+        invalidWord = item;
+        return validWord(item) === false;
+      })
+    ) {
+      return false;
+    } else {
+      return true;
     }
-    return allValid
   }
 
   function verifyBoard(words) {
     let workErrorMessage = '';
     // Are all squares filled in?
-    for (let j = 0; j < squares.length; j++) {
-      if (squares[j].letter === '') {
-        workErrorMessage = 'Fill in all squares';
-        setErrorMessage(workErrorMessage);
-        return;
-      }
+    if (
+      squares.some(item => {
+        return item.letter === '';
+      })
+    ) {
+      workErrorMessage = 'Fill in all squares';
     }
+
     // are all words real words
-    if (!checkWords()) {
-      workErrorMessage = invalidWord + ' is not valid';
-    } else {
-      workErrorMessage = 'You win!!!';
-      setScore(game.calculateScore(words));
+    if (workErrorMessage === '') {
+      if (!checkWords()) {
+        workErrorMessage = invalidWord + ' is not valid';
+      } else {
+        workErrorMessage = 'You win!!!';
+        setScore(game.calculateScore(words));
+      }
     }
     setErrorMessage(workErrorMessage);
   }
@@ -144,7 +147,7 @@ function App() {
     <>
       <h1 className="game-title">Dyna-crosswords</h1>
       <span className="score"> Score: {score}</span>
-      <div className={(checkWords()) ? "msgValid" : "msgErr"}>{errorMessage}</div>
+      <div className={checkWords() ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
       {!selectNumber ? (
         <div>
           <SelectNumber
