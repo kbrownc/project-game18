@@ -17,6 +17,7 @@ function App() {
   const [remainingAlphabet, setRemainingAlphabet] = useState(alphabet);
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
+  const [msgColorRed, setMsgColorRed] = useState(true);
   let game;
   let invalidWord = '';
 
@@ -30,6 +31,7 @@ function App() {
       setErrorMessage('');
       setRemainingAlphabet(alphabet);
       setScore(0);
+      setMsgColorRed(true)
       console.clear();
     }
     calculateScore(words) {
@@ -114,6 +116,7 @@ function App() {
         workErrorMessage = invalidWord + ' is not valid';
       } else {
         workErrorMessage = 'You win!!!';
+        setMsgColorRed(false)
         setScore(game.calculateScore(words));
       }
     }
@@ -147,7 +150,7 @@ function App() {
     <>
       <h1 className="game-title">Dyna-crosswords</h1>
       <span className="score"> Score: {score}</span>
-      <div className={true ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
+      <div className={!msgColorRed ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
       {!selectNumber ? (
         <div>
           <SelectNumber

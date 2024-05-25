@@ -54,7 +54,7 @@ const SelectNumber = ({
     const value = e.target.value.replace(/[^0-9]/gi, '');
     if (value > 20) return;
     if (value === '0') {
-      setErrorMessage('Warning....number of letters selected is 0');
+      setErrorMessage('Number of letters selected is 0');
     }
     setNumberSelected(value);
   };
