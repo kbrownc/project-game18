@@ -49,7 +49,7 @@ function App() {
   }
   game = new Game();
 
-  const handleClick = () => {
+  const handleDoneClick = () => {
     // which squares contain 1's,2's,3's,.....
     let wordN;
     let result = '';
@@ -174,7 +174,7 @@ function App() {
             setErrorMessage={setErrorMessage}
             numberSelected={numberSelected}
           />
-          <button className="restart" onClick={() => handleClick()}>
+          <button className="restart" onClick={() => handleDoneClick()}>
             Done
           </button>
         </div>
