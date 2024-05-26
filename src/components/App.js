@@ -20,6 +20,7 @@ function App() {
   const [msgColorRed, setMsgColorRed] = useState(true);
   let game;
   let invalidWord = '';
+  const totalNumberOfConsonants = 27;
 
   class Game {
     restart() {
@@ -31,7 +32,7 @@ function App() {
       setErrorMessage('');
       setRemainingAlphabet(alphabet);
       setScore(0);
-      setMsgColorRed(true)
+      setMsgColorRed(true);
       console.clear();
     }
     calculateScore(words) {
@@ -113,10 +114,11 @@ function App() {
     // are all words real words
     if (workErrorMessage === '') {
       if (!checkWords(words)) {
+        setMsgColorRed(true);
         workErrorMessage = invalidWord + ' is not valid';
       } else {
         workErrorMessage = 'You win!!!';
-        setMsgColorRed(false)
+        setMsgColorRed(false);
         setScore(game.calculateScore(words));
       }
     }
@@ -125,12 +127,15 @@ function App() {
 
   // Look in correct dictionary to see if word exists
   function validWord(word) {
-    let wordDictionArray = [wordDictionary2, wordDictionary3, wordDictionary4, wordDictionary5]
+    let wordDictionArray = [wordDictionary2, wordDictionary3, wordDictionary4, wordDictionary5];
     let wordDictionary = wordDictionArray[word.length - 2];
-    const found = wordDictionary.find(item => {
+    return !!wordDictionary.find(item => {
       return item === word.toLowerCase();
     });
-    return found !== undefined
+    // const found = wordDictionary.find(item => {
+    //   return item === word.toLowerCase();
+    // });
+    // return found !== undefined
   }
 
   return (
@@ -177,7 +182,10 @@ function App() {
             Word lengths selected:
             {wordLengths.map((lth, i) => lth + ' ')}
           </div>
-          <div>Number of Letters remaining: {maxNumberConsonants - (27 - remainingAlphabet.length)}</div>
+          <div>
+            Number of Letters remaining:{' '}
+            {maxNumberConsonants - (totalNumberOfConsonants - remainingAlphabet.length)}
+          </div>
         </div>
         <br />
         <button className="restart" onClick={() => game.restart()}>

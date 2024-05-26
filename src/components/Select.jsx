@@ -1,5 +1,7 @@
 import React from 'react';
 import { testBoard } from '../letters/Testboard';
+const lengthList = [2, 3, 4, 5];
+const useTestBoard = false;
 
 const SelectNumber = ({
   maxNumberConsonants,
@@ -13,9 +15,6 @@ const SelectNumber = ({
   setWordNo,
   setErrorMessage,
 }) => {
-  const lengthList = [2, 3, 4, 5];
-  let useTestBoard = false;
-
   const getRandomNumber = (start, end) => {
     let random = Math.floor(Math.random() * end + start);
     while (random > end) {
