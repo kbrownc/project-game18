@@ -9,22 +9,26 @@ const Board = ({
   errorMessage,
   setErrorMessage,
   maxNumberConsonants,
+  score,
 }) => {
   return (
-    <div className="board">
-      {squares.map((square, i) => (
-        <Square
-          key={i} 
-          i={i}
-          squares={squares}
-          setSquares={setSquares}
-          remainingAlphabet={remainingAlphabet}
-          setRemainingAlphabet={setRemainingAlphabet}
-          errorMessage={errorMessage} 
-          setErrorMessage={setErrorMessage}
-          maxNumberConsonants={maxNumberConsonants}
-        />
-      ))}
+    <div>
+      <div className="score"> Score: {score}</div>
+      <div className="board">
+        {squares.map((square, i) => (
+          <Square
+            key={i}
+            i={i}
+            squares={squares}
+            setSquares={setSquares}
+            remainingAlphabet={remainingAlphabet}
+            setRemainingAlphabet={setRemainingAlphabet}
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+            maxNumberConsonants={maxNumberConsonants}
+          />
+        ))}
+      </div>
     </div>
   );
 };

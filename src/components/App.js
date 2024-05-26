@@ -150,8 +150,8 @@ function App() {
   return (
     <>
       <h1 className="game-title">Dyna-crosswords</h1>
-      <span className="score"> Score: {score}</span>
       <div className={!msgColorRed ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
+      <br />
       {!showBoard ? (
         <div>
           <SelectNumber
@@ -177,6 +177,7 @@ function App() {
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             maxNumberConsonants={maxNumberConsonants}
+            score={score}
           />
           <button className="restart" onClick={() => handleDoneClick()}>
             Done
