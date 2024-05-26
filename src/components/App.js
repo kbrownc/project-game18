@@ -9,9 +9,9 @@ import { wordDictionary5 } from '../letters/WordDictionary5';
 import { letterPoints } from '../letters/LetterPoints';
 
 function App() {
-  const [selectNumber, setSelectNumber] = useState(false);
+  const [showBoard, setShowBoard] = useState(false);
   const [wordNo, setWordNo] = useState(1);
-  const [numberSelected, setNumberSelected] = useState('');
+  const [maxNumberConsonants, setMaxNumberConsonants] = useState('');
   const [squares, setSquares] = useState([]);
   const [wordLengths, setWordLengths] = useState([]);
   const [remainingAlphabet, setRemainingAlphabet] = useState(alphabet);
@@ -23,8 +23,8 @@ function App() {
 
   class Game {
     restart() {
-      setSelectNumber(false);
-      setNumberSelected('');
+      setShowBoard(false);
+      setMaxNumberConsonants('');
       setWordLengths([]);
       setSquares([]);
       setWordNo(1);
@@ -35,7 +35,7 @@ function App() {
       console.clear();
     }
     calculateScore(words) {
-      let workScore = 20 - numberSelected;
+      let workScore = 20 - maxNumberConsonants;
       for (let i = 0; i < words.length; i++) {
         for (let j = 0; j < words[i].length; j++) {
           workScore =
@@ -151,12 +151,12 @@ function App() {
       <h1 className="game-title">Dyna-crosswords</h1>
       <span className="score"> Score: {score}</span>
       <div className={!msgColorRed ? 'msgValid' : 'msgErr'}>{errorMessage}</div>
-      {!selectNumber ? (
+      {!showBoard ? (
         <div>
           <SelectNumber
-            numberSelected={numberSelected}
-            setNumberSelected={setNumberSelected}
-            setSelectNumber={setSelectNumber}
+            maxNumberConsonants={maxNumberConsonants}
+            setMaxNumberConsonants={setMaxNumberConsonants}
+            setShowBoard={setShowBoard}
             wordLengths={wordLengths}
             setWordLengths={setWordLengths}
             squares={squares}
@@ -175,7 +175,7 @@ function App() {
             setRemainingAlphabet={setRemainingAlphabet}
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
-            numberSelected={numberSelected}
+            maxNumberConsonants={maxNumberConsonants}
           />
           <button className="restart" onClick={() => handleDoneClick()}>
             Done
@@ -189,7 +189,7 @@ function App() {
             Word lengths selected:
             {wordLengths.map((lth, i) => lth + ' ')}
           </div>
-          <div>Number of Letters remaining: {numberSelected - (27 - remainingAlphabet.length)}</div>
+          <div>Number of Letters remaining: {maxNumberConsonants - (27 - remainingAlphabet.length)}</div>
         </div>
         <br />
         <button className="restart" onClick={() => game.restart()}>

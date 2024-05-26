@@ -2,9 +2,9 @@ import React from 'react';
 import { testBoard } from '../letters/Testboard';
 
 const SelectNumber = ({
-  numberSelected,
-  setNumberSelected,
-  setSelectNumber,
+  maxNumberConsonants,
+  setMaxNumberConsonants,
+  setShowBoard,
   wordLengths,
   setWordLengths,
   squares,
@@ -56,7 +56,7 @@ const SelectNumber = ({
     if (value === '0') {
       setErrorMessage('Number of letters selected is 0');
     }
-    setNumberSelected(value);
+    setMaxNumberConsonants(value);
   };
 
   function handleCheckboxChange(lth) {
@@ -143,7 +143,7 @@ const SelectNumber = ({
   };
 
   const saveClicked = () => {
-    if (numberSelected === '') {
+    if (maxNumberConsonants === '') {
       setErrorMessage('Number of letters  not selected');
       return;
     }
@@ -152,7 +152,7 @@ const SelectNumber = ({
       return;
     }
     setErrorMessage('');
-    setSelectNumber(true);
+    setShowBoard(true);
     let workSquares = loadBoard();
     // code to load a test board
     if (useTestBoard) {
@@ -180,7 +180,7 @@ const SelectNumber = ({
           name="value"
           className="selected"
           type="text"
-          value={numberSelected}
+          value={maxNumberConsonants}
           maxLength="2"
           onChange={editInput}
         />

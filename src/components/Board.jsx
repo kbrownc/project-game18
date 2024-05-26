@@ -8,7 +8,7 @@ const Board = ({
   setRemainingAlphabet,
   errorMessage,
   setErrorMessage,
-  numberSelected,
+  maxNumberConsonants,
 }) => {
   return (
     <div className="board">
@@ -22,7 +22,7 @@ const Board = ({
           setRemainingAlphabet={setRemainingAlphabet}
           errorMessage={errorMessage} 
           setErrorMessage={setErrorMessage}
-          numberSelected={numberSelected}
+          maxNumberConsonants={maxNumberConsonants}
         />
       ))}
     </div>

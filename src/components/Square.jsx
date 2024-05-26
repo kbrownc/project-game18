@@ -8,7 +8,7 @@ const Square = ({
   setRemainingAlphabet,
   errorMessage,
   setErrorMessage,
-  numberSelected,
+  maxNumberConsonants,
 }) => {
   const editInput = e => {
     const newSquares = JSON.parse(JSON.stringify(squares));
@@ -17,7 +17,7 @@ const Square = ({
     // Check to see if you have reached the extent of your letter useage
     let workErrorMessage = '';
     if (
-      numberSelected < 27 - remainingAlphabet.length + 1 &&
+      maxNumberConsonants < 27 - remainingAlphabet.length + 1 &&
       ['A', 'E', 'I', 'O', 'U'].indexOf(newLetter) === -1
     ) {
       workRemainingAlphabet.push('');
