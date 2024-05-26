@@ -124,18 +124,19 @@ function App() {
   }
 
   function validWord(word) {
-    let wordDictionary = [];
-    if (word.length === 2) {
-      wordDictionary = wordDictionary2;
-    } else if (word.length === 3) {
-      wordDictionary = wordDictionary3;
-    } else if (word.length === 3) {
-      wordDictionary = wordDictionary4;
-    } else if (word.length === 4) {
-      wordDictionary = wordDictionary4;
-    } else {
-      wordDictionary = wordDictionary5;
-    }
+    let wordDictionArray = [wordDictionary2, wordDictionary3, wordDictionary4, wordDictionary5]
+    let wordDictionary = wordDictionArray[word.length - 2];
+    // if (word.length === 2) {
+    //   wordDictionary = wordDictionary2;
+    // } else if (word.length === 3) {
+    //   wordDictionary = wordDictionary3;
+    // } else if (word.length === 3) {
+    //   wordDictionary = wordDictionary4;
+    // } else if (word.length === 4) {
+    //   wordDictionary = wordDictionary4;
+    // } else {
+    //   wordDictionary = wordDictionary5;
+    // }
     const found = wordDictionary.find(item => {
       return item === word.toLowerCase();
     });
