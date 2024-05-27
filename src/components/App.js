@@ -61,9 +61,9 @@ function App() {
       for (let j = 0; j < squares.length; j++) {
         wordN = squares.filter(event => {
           if (event.wordNums.length === 1) {
-            return event.wordNums[0] === i
+            return event.wordNums[0] === i;
           } else if (event.wordNums.length === 2) {
-            return event.wordNums[0] === i || event.wordNums[1] === i
+            return event.wordNums[0] === i || event.wordNums[1] === i;
           } else {
             return false;
           }
@@ -80,16 +80,10 @@ function App() {
   };
 
   function checkWords(words) {
-    if (
-      words.some(item => {
-        invalidWord = item;
-        return validWord(item) === false;
-      })
-    ) {
-      return false;
-    } else {
-      return true;
-    }
+    return !words.some(item => {
+      invalidWord = item;
+      return validWord(item) === false;
+    });
   }
 
   function verifyBoard(words) {
