@@ -36,16 +36,17 @@ function App() {
       console.clear();
     }
     calculateScore(words) {
+      // assign bonus points based on max Number Consonants selected
       let workScore = 20 - maxNumberConsonants;
-      for (let i = 0; i < words.length; i++) {
-        for (let j = 0; j < words[i].length; j++) {
+      words.forEach(value => {
+        value.split("").forEach(char => {
           workScore =
             workScore +
             letterPoints.find(item => {
-              return item.letter === words[i][j].toUpperCase();
+              return item.letter === char.toUpperCase();
             }).point;
-        }
-      }
+        })
+      })
       return workScore;
     }
   }
@@ -118,10 +119,6 @@ function App() {
     return !!wordDictionary.find(item => {
       return item === word.toLowerCase();
     });
-    // const found = wordDictionary.find(item => {
-    //   return item === word.toLowerCase();
-    // });
-    // return found !== undefined
   }
 
   return (
