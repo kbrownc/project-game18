@@ -61,17 +61,9 @@ function App() {
       for (let j = 0; j < squares.length; j++) {
         wordN = squares.filter(event => {
           if (event.wordNums.length === 1) {
-            if (event.wordNums[0] === i) {
-              return true;
-            } else {
-              return false;
-            }
+            return event.wordNums[0] === i
           } else if (event.wordNums.length === 2) {
-            if (event.wordNums[0] === i || event.wordNums[1] === i) {
-              return true;
-            } else {
-              return false;
-            }
+            return event.wordNums[0] === i || event.wordNums[1] === i
           } else {
             return false;
           }
