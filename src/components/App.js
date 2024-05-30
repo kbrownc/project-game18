@@ -47,8 +47,7 @@ function App() {
   }
 
   const handleDoneClick = () => {
-    let words = [];
-    getWords(words,wordNo,squares)
+    let words = getWords(wordNo,squares)
     verifyBoard(words);
   };
 

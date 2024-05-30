@@ -13,9 +13,10 @@ import { wordDictionary5 } from './letters/WordDictionary5';
   }
 
   // get words from board and put them into an array
-  function getWords(words,wordNo,squares) {
+  function getWords(wordNo,squares) {
     // the squares which contain 1's,2's,3's,..... etc. defines each word
     let wordN;
+    let wordsList =[];
     let result = '';
     for (let i = 1; i < wordNo + 1; i++) {
       wordN = [];
@@ -35,8 +36,9 @@ import { wordDictionary5 } from './letters/WordDictionary5';
       for (let k = 0; k < wordN.length; k++) {
         result = result + wordN[k].letter;
       }
-      words.push(result);
+      wordsList.push(result);
     }
+    return wordsList
   }
   
   export { validWord, getWords };

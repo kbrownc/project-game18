@@ -12,6 +12,7 @@ const Square = ({
 }) => {
   const vowels = ['A', 'E', 'I', 'O', 'U'];
   const totalNumberOfConsonants = 27;
+  
   const editInput = e => {
     const newSquares = JSON.parse(JSON.stringify(squares));
     const workRemainingAlphabet = JSON.parse(JSON.stringify(remainingAlphabet));
