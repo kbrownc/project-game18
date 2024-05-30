@@ -15,12 +15,11 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
   const [msgColorRed, setMsgColorRed] = useState(true);
-  let game;
   let invalidWord = '';
   const totalNumberOfConsonants = 27;
 
-  class Game {
-    restart() {
+  
+  const restart = () => {
       setShowBoard(false);
       setMaxNumberConsonants('');
       setWordLengths([]);
@@ -31,8 +30,8 @@ function App() {
       setScore(0);
       setMsgColorRed(true);
       console.clear();
-    }
-    calculateScore(words) {
+  }
+  const calculateScore = (words) => {
       // assign bonus points based on max Number Consonants selected
       let workScore = 20 - maxNumberConsonants;
       words.forEach(value => {
@@ -45,9 +44,7 @@ function App() {
         })
       })
       return workScore;
-    }
   }
-  game = new Game();
 
   const handleDoneClick = () => {
     let words = [];
@@ -81,7 +78,7 @@ function App() {
       } else {
         workErrorMessage = 'You win!!!';
         setMsgColorRed(false);
-        setScore(game.calculateScore(words));
+        setScore(calculateScore(words));
       }
     }
     setErrorMessage(workErrorMessage);
@@ -137,7 +134,7 @@ function App() {
           </div>
         </div>
         <br />
-        <button className="restart" onClick={() => game.restart()}>
+        <button className="restart" onClick={() => restart()}>
           Restart
         </button>
       </div>
