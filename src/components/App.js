@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import SelectNumber from './Select';
 import Board from './Board';
 import { alphabet } from '../letters/Alphabet';
-import { letterPoints } from '../letters/LetterPoints';
-import { validWord, getWords} from '../utils';
+import { validWord, getWords, calculateScore} from '../utils';
 
 function App() {
   const [showBoard, setShowBoard] = useState(false);
@@ -30,20 +29,6 @@ function App() {
       setScore(0);
       setMsgColorRed(true);
       console.clear();
-  }
-  const calculateScore = (words) => {
-      // assign bonus points based on max Number Consonants selected
-      let workScore = 20 - maxNumberConsonants;
-      words.forEach(value => {
-        value.split("").forEach(char => {
-          workScore =
-            workScore +
-            letterPoints.find(item => {
-              return item.letter === char.toUpperCase();
-            }).point;
-        })
-      })
-      return workScore;
   }
 
   const handleDoneClick = () => {
@@ -77,7 +62,7 @@ function App() {
       } else {
         workErrorMessage = 'You win!!!';
         setMsgColorRed(false);
-        setScore(calculateScore(words));
+        setScore(calculateScore(words,maxNumberConsonants));
       }
     }
     setErrorMessage(workErrorMessage);

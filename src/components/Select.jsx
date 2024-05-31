@@ -1,5 +1,6 @@
 import React from 'react';
 import { testBoard } from '../letters/Testboard';
+import { getRandomNumber, loadCell, switchCell } from '../utils';
 const lengthList = [2, 3, 4, 5];
 const useTestBoard = false;
 
@@ -15,40 +16,7 @@ const SelectNumber = ({
   setWordNo,
   setErrorMessage,
 }) => {
-  const getRandomNumber = (start, end) => {
-    let random = Math.floor(Math.random() * end + start);
-    while (random > end) {
-      random = Math.floor(Math.random() * end + start);
-    }
-    return random;
-  };
-
-  const loadCell = (x, y, workSquares, doubleWord, workWordNo) => {
-    let newSquare = {};
-    let wordNums = [workWordNo];
-    if (doubleWord) {
-      wordNums = [workWordNo, workWordNo - 1];
-    }
-    newSquare = {
-      letter: '',
-      locationCol: x + ' / ' + (x + 1),
-      locationRow: y + ' / ' + (y + 1),
-      wordNums: wordNums,
-    };
-    workSquares.push(newSquare);
-    return workSquares;
-  };
-
-  const switchCell = workSquares => {
-    let savedLetter = workSquares[workSquares.length - 2].letter;
-    let savedWordNums = workSquares[workSquares.length - 2].wordNums;
-    workSquares[workSquares.length - 2].letter = workSquares[workSquares.length - 1].letter;
-    workSquares[workSquares.length - 2].wordNums = workSquares[workSquares.length - 1].wordNums;
-    workSquares[workSquares.length - 1].letter = savedLetter;
-    workSquares[workSquares.length - 1].wordNums = savedWordNums;
-    return workSquares;
-  };
-
+  
   const editInput = e => {
     const value = e.target.value.replace(/[^0-9]/gi, '');
     if (value > 20) return;
@@ -68,6 +36,7 @@ const SelectNumber = ({
     setWordLengths(newWordLengths);
   }
 
+  // create an empty board
   const loadBoard = () => {
     let posY = 1;
     let workWordNo = wordNo;

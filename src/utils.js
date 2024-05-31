@@ -2,6 +2,7 @@ import { wordDictionary2 } from './letters/WordDictionary2';
 import { wordDictionary3 } from './letters/WordDictionary3';
 import { wordDictionary4 } from './letters/WordDictionary4';
 import { wordDictionary5 } from './letters/WordDictionary5';
+import { letterPoints } from './letters/LetterPoints';
 
   // Look in correct dictionary to see if word exists
   function validWord(word) {
@@ -40,5 +41,54 @@ import { wordDictionary5 } from './letters/WordDictionary5';
     }
     return wordsList
   }
+
+  const getRandomNumber = (start, end) => {
+    let random = Math.floor(Math.random() * end + start);
+    while (random > end) {
+      random = Math.floor(Math.random() * end + start);
+    }
+    return random;
+  };
+
+  const loadCell = (x, y, workSquares, doubleWord, workWordNo) => {
+    let newSquare = {};
+    let wordNums = [workWordNo];
+    if (doubleWord) {
+      wordNums = [workWordNo, workWordNo - 1];
+    }
+    newSquare = {
+      letter: '',
+      locationCol: x + ' / ' + (x + 1),
+      locationRow: y + ' / ' + (y + 1),
+      wordNums: wordNums,
+    };
+    workSquares.push(newSquare);
+    return workSquares;
+  };
+
+  const switchCell = workSquares => {
+    let savedLetter = workSquares[workSquares.length - 2].letter;
+    let savedWordNums = workSquares[workSquares.length - 2].wordNums;
+    workSquares[workSquares.length - 2].letter = workSquares[workSquares.length - 1].letter;
+    workSquares[workSquares.length - 2].wordNums = workSquares[workSquares.length - 1].wordNums;
+    workSquares[workSquares.length - 1].letter = savedLetter;
+    workSquares[workSquares.length - 1].wordNums = savedWordNums;
+    return workSquares;
+  };
+
+  const calculateScore = (words,maxNumberConsonants) => {
+      // assign bonus points based on max Number Consonants selected
+      let workScore = 20 - maxNumberConsonants;
+      words.forEach(value => {
+        value.split("").forEach(char => {
+          workScore =
+            workScore +
+            letterPoints.find(item => {
+              return item.letter === char.toUpperCase();
+            }).point;
+        })
+      })
+      return workScore;
+  }
   
-  export { validWord, getWords };
+  export { validWord, getWords, getRandomNumber, loadCell, switchCell, calculateScore };
