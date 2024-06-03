@@ -14,10 +14,8 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [score, setScore] = useState(0);
   const [msgColorRed, setMsgColorRed] = useState(true);
-  let invalidWord = '';
   const totalNumberOfConsonants = 27;
 
-  
   const restart = () => {
       setShowBoard(false);
       setMaxNumberConsonants('');
@@ -29,43 +27,6 @@ function App() {
       setScore(0);
       setMsgColorRed(true);
       console.clear();
-  }
-
-  const handleDoneClick = () => {
-    let words = getWords(wordNo,squares)
-    verifyBoard(words);
-  };
-
-  function checkWords(words) {
-    return !words.some(item => {
-      invalidWord = item;
-      return validWord(item) === false;
-    });
-  }
-
-  function verifyBoard(words) {
-    let workErrorMessage = '';
-    // Are all squares filled in?
-    if (
-      squares.some(item => {
-        return item.letter === '';
-      })
-    ) {
-      workErrorMessage = 'Fill in all squares';
-    }
-
-    // are all words real words
-    if (workErrorMessage === '') {
-      if (!checkWords(words)) {
-        setMsgColorRed(true);
-        workErrorMessage = invalidWord + ' is not valid';
-      } else {
-        workErrorMessage = 'You win!!!';
-        setMsgColorRed(false);
-        setScore(calculateScore(words,maxNumberConsonants));
-      }
-    }
-    setErrorMessage(workErrorMessage);
   }
 
   return (
@@ -99,10 +60,12 @@ function App() {
             setErrorMessage={setErrorMessage}
             maxNumberConsonants={maxNumberConsonants}
             score={score}
+            wordNo={wordNo}
+            setScore={setScore}
+            setMsgColorRed={setMsgColorRed}
+            setWordNo={setWordNo}
+            wordLengths={wordLengths}
           />
-          <button className="restart" onClick={() => handleDoneClick()}>
-            Done
-          </button>
         </div>
       )}
       <div className="info-wrapper">

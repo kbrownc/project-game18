@@ -90,5 +90,5 @@ import { letterPoints } from './letters/LetterPoints';
       })
       return workScore;
   }
-  
+
   export { validWord, getWords, getRandomNumber, loadCell, switchCell, calculateScore };
