@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Square from './Square';
 import useBoard from './useBoard';
 import { validWord, getWords, calculateScore} from '../utils';
 
 const Board = ({
-  squares,
-  setSquares,
   remainingAlphabet,
   setRemainingAlphabet,
   errorMessage,
   setErrorMessage,
   maxNumberConsonants,
-  score,
-  wordNo,
-  setScore,
   setMsgColorRed,
-  setWordNo,
   wordLengths,
 }) => {
+  const [squares, setSquares] = useState([]);
+  const [wordNo, setWordNo] = useState(1);
+  const [score, setScore] = useState(0);
+
+  const [workSquares, workWordNo] = useBoard(squares,wordLengths,wordNo,setWordNo);
   let invalidWord = '';
-  const workSquares = useBoard(wordNo,squares,wordLengths,setWordNo);
+  //setSquares(workSquares)
+  //setWordNo(workWordNo  )
 
   const handleDoneClick = () => {
     let words = getWords(wordNo,squares)

@@ -2,7 +2,7 @@ import { getRandomNumber, loadCell, switchCell } from '../utils';
 
 const useBoard = (squares, wordLengths, wordNo, setWordNo) => {
   // create an empty board
-  let workSquares = []
+  let workSquares = JSON.parse(JSON.stringify(squares));
   let posY = 1;
   let workWordNo = wordNo;
   let posX = 1;
@@ -70,8 +70,7 @@ const useBoard = (squares, wordLengths, wordNo, setWordNo) => {
   // Push out last letter of last word
   workWordNo--;
   workSquares = loadCell(posX, posY, workSquares, false, workWordNo);
-  setWordNo(workWordNo);
-  return workSquares;
+  return [workSquares,workWordNo];
 };
 
 export default useBoard;

@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import SelectNumber from './Select';
 import Board from './Board';
 import { alphabet } from '../letters/Alphabet';
-import { validWord, getWords, calculateScore} from '../utils';
 
 function App() {
   const [showBoard, setShowBoard] = useState(false);
-  const [wordNo, setWordNo] = useState(1);
   const [maxNumberConsonants, setMaxNumberConsonants] = useState('');
-  const [squares, setSquares] = useState([]);
   const [wordLengths, setWordLengths] = useState([]);
   const [remainingAlphabet, setRemainingAlphabet] = useState(alphabet);
   const [errorMessage, setErrorMessage] = useState('');
-  const [score, setScore] = useState(0);
   const [msgColorRed, setMsgColorRed] = useState(true);
   const totalNumberOfConsonants = 27;
 
@@ -20,11 +16,8 @@ function App() {
       setShowBoard(false);
       setMaxNumberConsonants('');
       setWordLengths([]);
-      setSquares([]);
-      setWordNo(1);
       setErrorMessage('');
       setRemainingAlphabet(alphabet);
-      setScore(0);
       setMsgColorRed(true);
       console.clear();
   }
@@ -42,28 +35,18 @@ function App() {
             setShowBoard={setShowBoard}
             wordLengths={wordLengths}
             setWordLengths={setWordLengths}
-            squares={squares}
-            setSquares={setSquares}
-            wordNo={wordNo}
-            setWordNo={setWordNo}
             setErrorMessage={setErrorMessage}
           />
         </div>
       ) : (
         <div>
           <Board
-            squares={squares}
-            setSquares={setSquares}
             remainingAlphabet={remainingAlphabet}
             setRemainingAlphabet={setRemainingAlphabet}
             errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             maxNumberConsonants={maxNumberConsonants}
-            score={score}
-            wordNo={wordNo}
-            setScore={setScore}
             setMsgColorRed={setMsgColorRed}
-            setWordNo={setWordNo}
             wordLengths={wordLengths}
           />
         </div>

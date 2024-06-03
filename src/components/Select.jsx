@@ -1,8 +1,6 @@
 import React from 'react';
-import { testBoard } from '../letters/Testboard';
 //import { loadCell, switchCell } from '../utils';
 const lengthList = [2, 3, 4, 5];
-const useTestBoard = false;
 
 const SelectNumber = ({
   maxNumberConsonants,
@@ -10,10 +8,6 @@ const SelectNumber = ({
   setShowBoard,
   wordLengths,
   setWordLengths,
-  squares,
-  setSquares,
-  wordNo,
-  setWordNo,
   setErrorMessage,
 }) => {
   
@@ -47,15 +41,6 @@ const SelectNumber = ({
     }
     setErrorMessage('');
     setShowBoard(true);
-
-    //const workSquares = JSON.parse(JSON.stringify(testBoard));
-    // let workSquares = loadBoard(wordNo,squares,wordLengths,setWordNo);
-
-    // code to load a test board
-    // if (useTestBoard) {
-    //   workSquares = JSON.parse(JSON.stringify(testBoard));
-    // }
-    // setSquares(workSquares);
   };
 
   return (
