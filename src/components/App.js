@@ -11,7 +11,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [msgColorRed, setMsgColorRed] = useState(true);
   const totalNumberOfConsonants = 27;
-
+ 
   const restart = () => {
       setShowBoard(false);
       setMaxNumberConsonants('');

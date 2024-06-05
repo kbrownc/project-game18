@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Square from './Square';
 import useBoard from './useBoard';
-import { validWord, getWords, calculateScore} from '../utils';
+import { validWord, getWords, calculateScore } from '../utils';
 
 const Board = ({
   remainingAlphabet,
@@ -12,17 +12,13 @@ const Board = ({
   setMsgColorRed,
   wordLengths,
 }) => {
-  const [squares, setSquares] = useState([]);
-  const [wordNo, setWordNo] = useState(1);
   const [score, setScore] = useState(0);
 
-  const [workSquares, workWordNo] = useBoard(squares,wordLengths,wordNo,setWordNo);
+  const [squares, setSquares, wordNo] = useBoard(wordLengths);
   let invalidWord = '';
-  //setSquares(workSquares)
-  //setWordNo(workWordNo  )
 
   const handleDoneClick = () => {
-    let words = getWords(wordNo,squares)
+    let words = getWords(wordNo, squares);
     verifyBoard(words);
   };
 
@@ -52,7 +48,7 @@ const Board = ({
       } else {
         workErrorMessage = 'You win!!!';
         setMsgColorRed(false);
-        setScore(calculateScore(words,maxNumberConsonants));
+        setScore(calculateScore(words, maxNumberConsonants));
       }
     }
     setErrorMessage(workErrorMessage);
@@ -77,8 +73,8 @@ const Board = ({
         ))}
       </div>
       <button className="restart" onClick={() => handleDoneClick()}>
-            Done
-          </button>
+        Done
+      </button>
     </div>
   );
 };
