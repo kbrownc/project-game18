@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SelectNumber from './Select';
 import Board from './Board';
 import { alphabet } from '../letters/Alphabet';
+import { totalNumberOfConsonants } from '../constants';
 
 function App() {
   const [showBoard, setShowBoard] = useState(false);
@@ -10,7 +11,6 @@ function App() {
   const [remainingAlphabet, setRemainingAlphabet] = useState(alphabet);
   const [errorMessage, setErrorMessage] = useState('');
   const [msgColorRed, setMsgColorRed] = useState(true);
-  const totalNumberOfConsonants = 27;
  
   const restart = () => {
       setShowBoard(false);

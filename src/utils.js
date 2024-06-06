@@ -13,16 +13,17 @@ import { letterPoints } from './letters/LetterPoints';
     });
   }
 
-  // get words from board and put them into an array
+  // get letters from board and put each word into an array
+  //    the squares which contain 1's,2's,3's,..... etc. defines each word
+  //    then create an array of words
   function getWords(wordNo,squares) {
-    // the squares which contain 1's,2's,3's,..... etc. defines each word
-    let wordN;
+    let singleWord;
     let wordsList =[];
     let result = '';
     for (let i = 1; i < wordNo + 1; i++) {
-      wordN = [];
+      singleWord = [];
       for (let j = 0; j < squares.length; j++) {
-        wordN = squares.filter(event => {
+        singleWord = squares.filter(event => {
           if (event.wordNums.length === 1) {
             return event.wordNums[0] === i;
           } else if (event.wordNums.length === 2) {
@@ -32,10 +33,10 @@ import { letterPoints } from './letters/LetterPoints';
           }
         });
       }
-      // combine words from board
+      // combine letters from each word
       result = '';
-      for (let k = 0; k < wordN.length; k++) {
-        result = result + wordN[k].letter;
+      for (let k = 0; k < singleWord.length; k++) {
+        result = result + singleWord[k].letter;
       }
       wordsList.push(result);
     }

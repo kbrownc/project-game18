@@ -1,4 +1,5 @@
 import React from 'react';
+import { totalNumberOfConsonants, vowels } from '../constants';
 
 const Square = ({
   i,
@@ -10,8 +11,6 @@ const Square = ({
   setErrorMessage,
   maxNumberConsonants,
 }) => {
-  const vowels = ['A', 'E', 'I', 'O', 'U'];
-  const totalNumberOfConsonants = 27;
   
   const editInput = e => {
     const newSquares = JSON.parse(JSON.stringify(squares));
