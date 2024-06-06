@@ -66,7 +66,6 @@ const Board = ({
             setSquares={setSquares}
             remainingAlphabet={remainingAlphabet}
             setRemainingAlphabet={setRemainingAlphabet}
-            errorMessage={errorMessage}
             setErrorMessage={setErrorMessage}
             maxNumberConsonants={maxNumberConsonants}
           />

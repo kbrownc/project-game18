@@ -7,7 +7,6 @@ const Square = ({
   setSquares,
   remainingAlphabet,
   setRemainingAlphabet,
-  errorMessage,
   setErrorMessage,
   maxNumberConsonants,
 }) => {
@@ -27,7 +26,7 @@ const Square = ({
       workErrorMessage = 'You have reached the extent of your letter useage... please start over';
       newLetter = '';
     }
-    setErrorMessage(workErrorMessage);
+
     // Ensure input is a letter and if it is save it
     // Ensure letter is available. If not generate ab error message
     if (

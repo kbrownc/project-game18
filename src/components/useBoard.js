@@ -26,11 +26,7 @@ const useBoard = wordLengths => {
       let doubleWord = false;
       for (let x = 1; x < wordLengths[i]; x++) {
         // check if letter is used in 2 words
-        if ((x === 1 && i !== 0) || (x === 1 && posX !== 1)) {
-          doubleWord = true;
-        } else {
-          doubleWord = false;
-        }
+        doubleWord =  (x === 1 && i !== 0) || (x === 1 && posX !== 1)
         workSquares = loadCell(posX, posY, workSquares, doubleWord, workWordNo);
         if (alignment === 'row') {
           posX++;
@@ -58,11 +54,7 @@ const useBoard = wordLengths => {
         }
       }
       // switch direction of next word
-      if (alignment === 'row') {
-        alignment = 'column';
-      } else {
-        alignment = 'row';
-      }
+      alignment = alignment === 'row'  ? 'column' : 'row'
       // if room still exists for another word, start processing word lengths at the beginning
       if (alignment === 'row' && posX + wordLengths[0] < 9 && i + 1 === wordLengths.length) {
         i = -1;
