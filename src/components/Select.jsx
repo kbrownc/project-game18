@@ -1,6 +1,5 @@
 import React from 'react';
-//import { loadCell, switchCell } from '../utils';
-const lengthList = [2, 3, 4, 5];
+import { lengthList } from '../constants';
 
 const SelectNumber = ({
   maxNumberConsonants,
