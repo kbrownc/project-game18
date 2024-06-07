@@ -3,6 +3,7 @@ import { wordDictionary3 } from './letters/WordDictionary3';
 import { wordDictionary4 } from './letters/WordDictionary4';
 import { wordDictionary5 } from './letters/WordDictionary5';
 import { letterPoints } from './letters/LetterPoints';
+import { vowels } from './constants';
 
   // Look in correct dictionary to see if word exists
   function validWord(word) {
@@ -92,4 +93,8 @@ import { letterPoints } from './letters/LetterPoints';
       return workScore;
   }
 
-  export { validWord, getWords, getRandomNumber, loadCell, switchCell, calculateScore };
+  const notVowel = (newLetter) => {
+    return vowels.indexOf(newLetter) === -1
+  }
+
+  export { validWord, getWords, getRandomNumber, loadCell, switchCell, calculateScore, notVowel };

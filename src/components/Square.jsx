@@ -1,5 +1,6 @@
 import React from 'react';
-import { totalNumberOfConsonants, vowels } from '../constants';
+import { totalNumberOfConsonants } from '../constants';
+import { notVowel } from '../utils';
 
 const Square = ({
   i,
@@ -20,7 +21,7 @@ const Square = ({
     let workErrorMessage = '';
     if (
       maxNumberConsonants < totalNumberOfConsonants - remainingAlphabet.length + 1 &&
-      vowels.indexOf(newLetter) === -1
+      notVowel(newLetter) 
     ) {
       workRemainingAlphabet.push('');
       workErrorMessage = 'You have reached the extent of your letter useage... please start over';
@@ -33,7 +34,7 @@ const Square = ({
       workRemainingAlphabet.indexOf(e.target.value.toUpperCase()) === -1 &&
       e.target.value !== '' &&
       workErrorMessage === '' &&
-      vowels.indexOf(newLetter) === -1
+      notVowel(newLetter) 
     ) {
       workRemainingAlphabet.push('');
       workErrorMessage = 'Letter is not available';
@@ -44,13 +45,13 @@ const Square = ({
     if (
       newSquares[i].letter !== '' &&
       e.target.value === '' &&
-      vowels.indexOf(newSquares[i].letter) === -1
+      notVowel(newSquares[i].letter) 
     ) {
       workRemainingAlphabet.push(newSquares[i].letter);
     }
     // if letter entered was not '' and was not a vowel, remove it from alphabet list
     if (newLetter !== '') {
-      if (vowels.indexOf(newLetter) === -1) {
+      if (notVowel(newLetter))  {
         workRemainingAlphabet.splice(workRemainingAlphabet.indexOf(newLetter), 1);
       }
     }
