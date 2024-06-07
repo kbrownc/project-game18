@@ -16,9 +16,10 @@ const useBoard = wordLengths => {
     // outer loop runs through selected word lengths
     for (let i = 0; i < wordLengths.length; i++) {
       // check to see if you have made the largest board possible yet
-      if (alignment === 'row' && posX + wordLengths[i] > 9) {
-        break;
-      } else if (alignment === 'column' && posY + wordLengths[i] > 9) {
+      if (
+        (alignment === 'row' && posX + wordLengths[i] > 9) ||
+        (alignment === 'column' && posY + wordLengths[i] > 9)
+      ) {
         break;
       }
       // inner loop processes each letter in a word
@@ -28,11 +29,7 @@ const useBoard = wordLengths => {
         // check if letter is used in 2 words
         doubleWord = (x === 1 && i !== 0) || (x === 1 && posX !== 1);
         workSquares = loadCell(posX, posY, workSquares, doubleWord, workWordNo);
-        if (alignment === 'row') {
-          posX++;
-        } else {
-          posY++;
-        }
+        alignment === 'row' ? posX++ : posY++;
         // randomly adjust if you build the next word on the current word's last or 2nd last letter
         //      row/1st letter of new word is last letter of previous/ 4 or 5 letter word/not 1st word
         if (alignment === 'row' && x === 1 && wordLengths[i - 1] > 2 && i > 0 && wordLengths[i] !== 2) {
