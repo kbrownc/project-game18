@@ -3,7 +3,7 @@ import { wordDictionary3 } from './letters/WordDictionary3';
 import { wordDictionary4 } from './letters/WordDictionary4';
 import { wordDictionary5 } from './letters/WordDictionary5';
 import { letterPoints } from './letters/LetterPoints';
-import { vowels } from './constants';
+import { vowels, maxConsonantsPlayable } from './constants';
 
   // Look in correct dictionary to see if word exists
   function validWord(word) {
@@ -35,10 +35,9 @@ import { vowels } from './constants';
         });
       }
       // combine letters from each word
-      result = '';
-      for (let k = 0; k < singleWord.length; k++) {
-        result = result + singleWord[k].letter;
-      }
+      result = singleWord.reduce((word, item) => {
+        return word + item.letter
+      }, '')
       wordsList.push(result);
     }
     return wordsList
@@ -80,7 +79,7 @@ import { vowels } from './constants';
 
   const calculateScore = (words,maxNumberConsonants) => {
       // assign bonus points based on max Number Consonants selected
-      let workScore = 20 - maxNumberConsonants;
+      let workScore = maxConsonantsPlayable - maxNumberConsonants;
       words.forEach(value => {
         value.split("").forEach(char => {
           workScore =
