@@ -23,20 +23,17 @@ const Square = ({
       maxNumberConsonants < totalNumberOfConsonants - remainingAlphabet.length + 1 &&
       notVowel(newLetter) 
     ) {
-      workRemainingAlphabet.push('');
       workErrorMessage = 'You have reached the extent of your letter useage... please start over';
       newLetter = '';
     }
 
-    // Ensure input is a letter and if it is save it
-    // Ensure letter is available. If not generate ab error message
+    // Ensure input is a letter and available for selection
     if (
       workRemainingAlphabet.indexOf(e.target.value.toUpperCase()) === -1 &&
       e.target.value !== '' &&
       workErrorMessage === '' &&
       notVowel(newLetter) 
     ) {
-      workRemainingAlphabet.push('');
       workErrorMessage = 'Letter is not available';
       newLetter = '';
     }
