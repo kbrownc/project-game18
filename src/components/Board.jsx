@@ -14,7 +14,7 @@ const Board = ({
 }) => {
   const [score, setScore] = useState(0);
 
-  const [squares, setSquares, wordNo] = useBoard(wordLengths);
+  const [squares, setSquares, wordNo, addLetter] = useBoard(wordLengths);
   let invalidWord = '';
 
   const handleDoneClick = () => {
@@ -54,6 +54,8 @@ const Board = ({
     setErrorMessage(workErrorMessage);
   }
 
+  if (squares.length === 0) return null;
+
   return (
     <div>
       <div className="score"> Score: {score}</div>
@@ -62,12 +64,14 @@ const Board = ({
           <Square
             key={i}
             i={i}
-            squares={squares}
-            setSquares={setSquares}
             remainingAlphabet={remainingAlphabet}
             setRemainingAlphabet={setRemainingAlphabet}
             setErrorMessage={setErrorMessage}
             maxNumberConsonants={maxNumberConsonants}
+            wordLengths={wordLengths}
+            squares={squares}
+            setSquares={setSquares}
+            addLetter={addLetter}
           />
         ))}
       </div>
