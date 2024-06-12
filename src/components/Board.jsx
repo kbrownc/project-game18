@@ -13,7 +13,6 @@ const Board = ({
   wordLengths,
 }) => {
   const [score, setScore] = useState(0);
-
   const [squares, setSquares, wordNo, addLetter] = useBoard(wordLengths);
   let invalidWord = '';
 
@@ -53,8 +52,6 @@ const Board = ({
     }
     setErrorMessage(workErrorMessage);
   }
-
-  if (squares.length === 0) return null;
 
   return (
     <div>

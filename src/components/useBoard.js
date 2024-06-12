@@ -3,10 +3,10 @@ import { getRandomNumber, loadCell, switchCell, notVowel } from '../utils';
 import { totalNumberOfConsonants } from '../constants';
 
 const useBoard = wordLengths => {
-  // create an empty board
   const [squares, setSquares] = useState([]);
   const [wordNo, setWordNo] = useState(1);
 
+  // create an empty board
   useEffect(() => {
     let workSquares = JSON.parse(JSON.stringify(squares));
     let posY = 1;
@@ -70,6 +70,7 @@ const useBoard = wordLengths => {
     setWordNo(workWordNo);
   }, []);
 
+  // add a letter to the board
   const addLetter = (
     e,
     i,
@@ -79,7 +80,6 @@ const useBoard = wordLengths => {
     maxNumberConsonants,
     wordLengths
   ) => {
-
     const newSquares = JSON.parse(JSON.stringify(squares));
     const workRemainingAlphabet = JSON.parse(JSON.stringify(remainingAlphabet));
     let newLetter = e.target.value.replace(/[^a-z]/gi, '').toUpperCase();

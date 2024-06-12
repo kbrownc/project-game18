@@ -31,11 +31,11 @@ const SelectNumber = ({
 
   const saveClicked = () => {
     if (maxNumberConsonants === '') {
-      setErrorMessage('Number of letters  not selected');
+      setErrorMessage('Number of letters not selected');
       return;
     }
     if (wordLengths.length === 0) {
-      setErrorMessage('Lengths of words  not selected');
+      setErrorMessage('Lengths of words not selected');
       return;
     }
     setErrorMessage('');

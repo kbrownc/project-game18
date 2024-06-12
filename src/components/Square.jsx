@@ -11,7 +11,6 @@ const Square = ({
   setSquares, 
   addLetter
 }) => {
-  
   const editInput = e => {
     addLetter(e,i,remainingAlphabet,setRemainingAlphabet,setErrorMessage,maxNumberConsonants,wordLengths)
   }
