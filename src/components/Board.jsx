@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Square from './Square';
 import useBoard from './useBoard';
-import { validWord, getWords, calculateScore } from '../utils';
+import { getWords,  verifyBoard } from '../utils';
 
 const Board = ({
   remainingAlphabet,
@@ -14,44 +14,12 @@ const Board = ({
 }) => {
   const [score, setScore] = useState(0);
   const [squares, setSquares, wordNo, addLetter] = useBoard(wordLengths);
-  let invalidWord = '';
 
   const handleDoneClick = () => {
+    let invalidWord = '';
     let words = getWords(wordNo, squares);
-    verifyBoard(words);
+    verifyBoard(words,invalidWord,setScore,squares,setMsgColorRed,maxNumberConsonants,setErrorMessage);
   };
-
-  function checkWords(words) {
-    return !words.some(item => {
-      invalidWord = item;
-      return validWord(item) === false;
-    });
-  }
-
-  function verifyBoard(words) {
-    let workErrorMessage = '';
-    // Are all squares filled in?
-    if (
-      squares.some(item => {
-        return item.letter === '';
-      })
-    ) {
-      workErrorMessage = 'Fill in all squares';
-    }
-
-    // are all words real words
-    if (workErrorMessage === '') {
-      if (!checkWords(words)) {
-        setMsgColorRed(true);
-        workErrorMessage = invalidWord + ' is not valid';
-      } else {
-        workErrorMessage = 'You win!!!';
-        setMsgColorRed(false);
-        setScore(calculateScore(words, maxNumberConsonants));
-      }
-    }
-    setErrorMessage(workErrorMessage);
-  }
 
   return (
     <div>
