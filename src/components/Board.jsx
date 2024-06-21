@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Square from './Square';
 import useBoard from './useBoard';
-import { getWords,  verifyBoard } from '../utils';
+import { getWords, verifyBoard } from '../utils';
 
 const Board = ({
   remainingAlphabet,
@@ -18,7 +18,7 @@ const Board = ({
   const handleDoneClick = () => {
     let invalidWord = '';
     let words = getWords(wordNo, squares);
-    verifyBoard(words,invalidWord,setScore,squares,setMsgColorRed,maxNumberConsonants,setErrorMessage);
+    verifyBoard(words, invalidWord, setScore, squares, setMsgColorRed, maxNumberConsonants, setErrorMessage);
   };
 
   return (

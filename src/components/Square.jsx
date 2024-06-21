@@ -8,13 +8,21 @@ const Square = ({
   maxNumberConsonants,
   wordLengths,
   squares,
-  setSquares, 
-  addLetter
+  setSquares,
+  addLetter,
 }) => {
   const editInput = e => {
-    addLetter(e,i,remainingAlphabet,setRemainingAlphabet,setErrorMessage,maxNumberConsonants,wordLengths)
-  }
-  
+    addLetter(
+      e,
+      i,
+      remainingAlphabet,
+      setRemainingAlphabet,
+      setErrorMessage,
+      maxNumberConsonants,
+      wordLengths
+    );
+  };
+
   return (
     <div className="cell" style={{ gridRow: squares[i].locationRow, gridColumn: squares[i].locationCol }}>
       <input

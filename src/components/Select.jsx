@@ -9,7 +9,6 @@ const SelectNumber = ({
   setWordLengths,
   setErrorMessage,
 }) => {
-  
   const editInput = e => {
     const value = e.target.value.replace(/[^0-9]/gi, '');
     if (value > 20) return;
@@ -47,7 +46,7 @@ const SelectNumber = ({
       <div className="instructions">
         Enter a number betwen 1 & 20 which
         <br />
-        limits the number of consonents you 
+        limits the number of consonents you
         <br />
         can play. Select the word sizes you
         <br />
@@ -68,23 +67,23 @@ const SelectNumber = ({
         <span className="instructionsNum">Enter number here</span>
       </div>
       <div>
-          {lengthList.map(lth => (
-            <div key={lth}>
-              <input
-                type="checkbox"
-                name="select"
-                key="{lth}"
-                checked={wordLengths.filter(item => item === lth).length > 0 ? 'checked' : ''}
-                value={lengthList.filter(item => item === lth)}
-                onChange={() => handleCheckboxChange(lth)}
-              />
-              <label className="modal-label">{lth + ' letter word size'}</label>
-            </div>
-          ))}
+        {lengthList.map(lth => (
+          <div key={lth}>
+            <input
+              type="checkbox"
+              name="select"
+              key="{lth}"
+              checked={wordLengths.filter(item => item === lth).length > 0 ? 'checked' : ''}
+              value={lengthList.filter(item => item === lth)}
+              onChange={() => handleCheckboxChange(lth)}
+            />
+            <label className="modal-label">{lth + ' letter word size'}</label>
+          </div>
+        ))}
       </div>
       <button className="done" onClick={() => saveClicked()}>
-          Save choices
-        </button>
+        Save choices
+      </button>
     </>
   );
 };
