@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getRandomNumber, loadCell, switchCell, notVowel } from '../utils';
-import { totalNumberOfConsonants } from '../constants';
+import { totalNumberOfConsonants, maxGameSize } from '../constants';
 
 const useBoard = wordLengths => {
   const [squares, setSquares] = useState([]);
@@ -14,18 +14,18 @@ const useBoard = wordLengths => {
     let posX = 1;
     let alignment = 'row';
     let randomNumber;
+    let doubleWord = false;
     // outer loop runs through selected word lengths
     for (let i = 0; i < wordLengths.length; i++) {
       // check to see if you have made the largest board possible yet
       if (
-        (alignment === 'row' && posX + wordLengths[i] > 9) ||
-        (alignment === 'column' && posY + wordLengths[i] > 9)
+        (alignment === 'row' && posX + wordLengths[i] > maxGameSize) ||
+        (alignment === 'column' && posY + wordLengths[i] > maxGameSize)
       ) {
         break;
       }
       // inner loop processes each letter in a word
       randomNumber = getRandomNumber(1, 2);
-      let doubleWord = false;
       for (let x = 1; x < wordLengths[i]; x++) {
         // check if letter is used in 2 words
         doubleWord = (x === 1 && i !== 0) || (x === 1 && posX !== 1);
@@ -55,8 +55,8 @@ const useBoard = wordLengths => {
       alignment = alignment === 'row' ? 'column' : 'row';
       // if room still exists for another word, start processing word lengths at the beginning
       if (
-        (alignment === 'row' && posX + wordLengths[0] < 9 && i + 1 === wordLengths.length) ||
-        (alignment === 'column' && posY + wordLengths[0] < 9 && i + 1 === wordLengths.length)
+        (alignment === 'row' && posX + wordLengths[0] < maxGameSize && i + 1 === wordLengths.length) ||
+        (alignment === 'column' && posY + wordLengths[0] < maxGameSize && i + 1 === wordLengths.length)
       ) {
         i = -1;
       }

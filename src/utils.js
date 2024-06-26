@@ -104,7 +104,6 @@ function checkWords(words,invalidWord) {
 }
 
 function verifyBoard(words,invalidWord,setScore,squares,setMsgColorRed,maxNumberConsonants,setErrorMessage) {
-  console.log(squares)
   let workErrorMessage = '';
   // Are all squares filled in?
   if (
