@@ -96,14 +96,20 @@ const notVowel = newLetter => {
   return vowels.indexOf(newLetter) === -1;
 };
 
-function checkWords(words,invalidWord) {
-  return !words.some(item => {
-    invalidWord = item;
-    return validWord(item) === false;
-  });
-}
+const checkWords = words => {
+  let invalidWord = '';
+  let isWordValid = true;
+  for (let j = 0; j < words.length; j++) {
+    if (validWord(words[j]) === false) {
+      isWordValid = false;
+      invalidWord = words[j];
+      break;
+    }
+  }
+  return [isWordValid, invalidWord];
+};
 
-function verifyBoard(words,invalidWord,setScore,squares,setMsgColorRed,maxNumberConsonants,setErrorMessage) {
+function verifyBoard(words, setScore, squares, setMsgColorRed, maxNumberConsonants, setErrorMessage) {
   let workErrorMessage = '';
   // Are all squares filled in?
   if (
@@ -115,7 +121,8 @@ function verifyBoard(words,invalidWord,setScore,squares,setMsgColorRed,maxNumber
   }
   // are all words real words
   if (workErrorMessage === '') {
-    if (!checkWords(words,invalidWord)) {
+    const [isWordValid, invalidWord] = checkWords(words);
+    if (!isWordValid) {
       setMsgColorRed(true);
       workErrorMessage = invalidWord + ' is not valid';
     } else {

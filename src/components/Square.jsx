@@ -18,8 +18,7 @@ const Square = ({
       remainingAlphabet,
       setRemainingAlphabet,
       setErrorMessage,
-      maxNumberConsonants,
-      wordLengths
+      maxNumberConsonants
     );
   };
 

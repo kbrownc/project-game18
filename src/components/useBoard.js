@@ -61,7 +61,7 @@ const useBoard = wordLengths => {
         i = -1;
       }
       // increment word counter
-      workWordNo++;
+      workWordNo++;  
     }
     // Push out last letter of last word
     workWordNo--;
@@ -77,8 +77,7 @@ const useBoard = wordLengths => {
     remainingAlphabet,
     setRemainingAlphabet,
     setErrorMessage,
-    maxNumberConsonants,
-    wordLengths
+    maxNumberConsonants
   ) => {
     const newSquares = JSON.parse(JSON.stringify(squares));
     const workRemainingAlphabet = JSON.parse(JSON.stringify(remainingAlphabet));
@@ -90,7 +89,6 @@ const useBoard = wordLengths => {
       workErrorMessage = 'You have reached the extent of your letter useage... please start over';
       newLetter = '';
     }
-
     // Ensure input is a letter and available for selection
     if (
       workRemainingAlphabet.indexOf(e.target.value.toUpperCase()) === -1 &&
@@ -102,7 +100,7 @@ const useBoard = wordLengths => {
       newLetter = '';
     }
     setErrorMessage(workErrorMessage);
-    // Add letter to available list if removed
+    // Add letter to available list if removed from game
     if (newSquares[i].letter !== '' && e.target.value === '' && notVowel(newSquares[i].letter)) {
       workRemainingAlphabet.push(newSquares[i].letter);
     }
