@@ -68,7 +68,7 @@ const useBoard = wordLengths => {
     workSquares = loadCell(posX, posY, workSquares, false, workWordNo);
     setSquares(workSquares);
     setWordNo(workWordNo);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // add a letter to the board
   const addLetter = (
