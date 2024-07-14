@@ -3,6 +3,7 @@ import SelectNumber from './Select';
 import Board from './Board';
 import { alphabet } from '../letters/Alphabet';
 import { totalNumberOfConsonants } from '../constants';
+import { isMobile } from '../utils';
 
 function App() {
   const [showBoard, setShowBoard] = useState(false);
@@ -11,18 +12,16 @@ function App() {
   const [remainingAlphabet, setRemainingAlphabet] = useState(alphabet);
   const [errorMessage, setErrorMessage] = useState('');
   const [msgColorRed, setMsgColorRed] = useState(true);
- 
-  const restart = () => {
-      setShowBoard(false);
-      setMaxNumberConsonants('');
-      setWordLengths([]);
-      setErrorMessage('');
-      setRemainingAlphabet(alphabet);
-      setMsgColorRed(true);
-      console.clear();
-  }
 
-  // <p className="alphabet">{remainingAlphabet} </p>
+  const restart = () => {
+    setShowBoard(false);
+    setMaxNumberConsonants('');
+    setWordLengths([]);
+    setErrorMessage('');
+    setRemainingAlphabet(alphabet);
+    setMsgColorRed(true);
+    console.clear();
+  };
 
   return (
     <>
@@ -54,7 +53,14 @@ function App() {
         </div>
       )}
       <div className="info-wrapper">
-        
+        {isMobile() ? (
+        <>
+          <p className="alphabet">{remainingAlphabet.slice(0,remainingAlphabet.length / 2)}</p>
+          <p className="alphabet">{remainingAlphabet.slice(remainingAlphabet.length / 2)}</p>
+          </>
+        ) : (
+          <p className="alphabet">{remainingAlphabet} </p>
+        )}
         <div className="info-parms">
           <div>
             Word lengths selected:

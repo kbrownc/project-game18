@@ -134,6 +134,10 @@ function verifyBoard(words, setScore, squares, setMsgColorRed, maxNumberConsonan
   setErrorMessage(workErrorMessage);
 }
 
+function isMobile() {
+  return /Android|iPhone/i.test(navigator.userAgent);
+}
+
 export {
   validWord,
   getWords,
@@ -144,4 +148,5 @@ export {
   notVowel,
   checkWords,
   verifyBoard,
+  isMobile
 };
