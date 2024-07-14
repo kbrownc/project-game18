@@ -22,6 +22,8 @@ function App() {
       console.clear();
   }
 
+  // <p className="alphabet">{remainingAlphabet} </p>
+
   return (
     <>
       <h1 className="game-title">Dyna-crosswords</h1>
@@ -52,7 +54,7 @@ function App() {
         </div>
       )}
       <div className="info-wrapper">
-        <p className="alphabet">{remainingAlphabet} </p>
+        
         <div className="info-parms">
           <div>
             Word lengths selected:
